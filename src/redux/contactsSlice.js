@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import contactList from '../components/data/contacts.json'
+// import contactList from '../components/data/contacts.json'
  
 const contactsSlice = createSlice({
   name: 'contacts',
-  initialState: { contacts: contactList, filter: '' },
+  initialState: { contacts: [], filter: '' },
   reducers: {
     setContact(state, action) {
       let newContact = action.payload;
@@ -38,6 +38,7 @@ const contactsSlice = createSlice({
 const persistConfig = {
   key: 'contacts',
   storage,
+  whitelist: ['contacts', 'filter']
 };
 
 export const contactsReducer = persistReducer(
