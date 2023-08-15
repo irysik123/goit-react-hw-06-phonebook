@@ -26,8 +26,8 @@ export const contactsSlice = createSlice({
       state.contacts[index] = action.payload;
     },
     deleteById(state, action) {
-      let id = action.payload;
-      state.contacts.splice(id, 1);
+      let indexToDelete = state.contacts.findIndex(con => con.id === action.payload)
+      state.contacts.splice(indexToDelete, 1)
     },
     setFilter(state, action) {
       state.filter = action.payload;
@@ -49,4 +49,3 @@ export const contactsReducer = persistReducer(
 export const { setContact, update, deleteById, setFilter } =
   contactsSlice.actions;
 
-export default contactsSlice.reducer;
